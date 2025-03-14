@@ -4,18 +4,24 @@ import org.utils.FileUtils;
 import org.utils.SortOrder;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
     static final String resourcesPath = "/src/main/resources";
+
     public static void main(String[] args) {
-        readAllFilesFromDir(FileUtils.getDirPath(resourcesPath));
+        readAllFilesFromDir(FileUtils.getDirPath(resourcesPath), SortOrder.ASC);
     }
 
-    public static void readAllFilesFromDir(String dirName){
-        File[] files = FileUtils.getAllFilesFromDir(FileUtils.getDirPath(resourcesPath));
-        FileUtils.sortFiles(files, SortOrder.DESC);
-        for(String file : FileUtils.convertFilesToArray(files)){
-            System.out.println(file);
+    public static void readAllFilesFromDir(String dirName, SortOrder sortOrder) {
+        List<File> files = new java.util.ArrayList<>(List.of(FileUtils.getAllFilesFromDir(dirName)));
+        Collections.sort(files);
+        if (sortOrder == SortOrder.DESC) {
+            files.sort(Collections.reverseOrder());
+        }
+        for (File file : files) {
+            System.out.println(file.getName());
         }
     }
 
