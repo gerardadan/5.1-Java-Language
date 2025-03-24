@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main {
-    static final String resourcesPath = "/src/main/resources";
+    static final String resourcesPath = "\\src\\main\\resources";
 
     public static void main(String[] args) {
         String path = FileUtils.getAbsoluteFilePath(FileUtils.getProjectPath() + "\\src\\main\\resources\\resultEx03.txt");
         if (args.length > 0) {
             try {
-                path = FileUtils.getAbsoluteFilePath(args[0]);
+                path = FileUtils.getAbsoluteFilePath(FileUtils.getAbsoluteFilePath(FileUtils.getProjectPath() + args[0]));
             } catch (Exception e) {
                 Print.printConsole("Path don't exist");
             }

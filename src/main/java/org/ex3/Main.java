@@ -13,7 +13,7 @@ public class Main {
         String path = FileUtils.getAbsoluteFilePath(FileUtils.getProjectPath() + "/src/main/resources");
         if (args.length > 0) {
             try {
-                path = FileUtils.getAbsoluteFilePath(args[0]);
+                path = FileUtils.getAbsoluteFilePath(FileUtils.getAbsoluteFilePath(FileUtils.getProjectPath() + args[0]));
             } catch (Exception e) {
                 new Print("Path don't exist");
             }
